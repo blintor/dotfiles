@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/home/blntrsz/.config/alacritty'
+let g:netrw_dirhist_7='/home/baloro/Code/entropystack.git/main/examples/todo/components/submit-button'
+let g:netrw_dirhist_6='/home/baloro/Code/entropystack.git/main/examples/todo/public'
+let g:netrw_dirhist_5='/home/baloro/Code/entropystack.git/main/examples/todo/components/input-field'
+let g:netrw_dirhist_4='/home/baloro/Letöltések/Facebook Leak [2019][533M Records][106 Countries]/Hungary.txt'
+let g:netrw_dirhist_3='/home/baloro/Code/micro-web/examples/front/button'
+let g:netrw_dirhist_2='/home/baloro/Code/nano-blocks/block'
+let g:netrw_dirhist_1='/home/baloro/.rustup'

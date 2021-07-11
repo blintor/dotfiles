@@ -1,0 +1,10 @@
+{
+  "eslint.autoFixOnSave": true,
+  "prettier.semi": true,
+  "prettier.endOfLine": "auto",
+  "prettier.tabWidth": 4,
+  "prettier.singleQuote": true,
+  "prettier.jsxSingleQuote": true,
+  "prettier.printWidth": 120,
+  "prettier.bracketSpacing": true
+}
