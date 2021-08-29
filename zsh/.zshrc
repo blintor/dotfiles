@@ -90,10 +90,16 @@ setopt  autocd autopushd
 # FZF
 export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*,.cache/*,public/*}"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-#set guifont=DroidSansMono\ Nerd\ Font\ 11
 
 
 # fnm
 export PATH=/home/blntrsz/.fnm:$PATH
+export PATH=/home/blntrsz/.fnm/node-versions/v14.17.5/installation/bin:$PATH
 eval "`fnm env`"
 export PATH=$HOME/bin:$PATH
+
+set guifont=DroidSansMono\ Nerd\ Font\ 11
+
+# fnm
+export PATH=/home/blntrsz/.fnm:$PATH
+eval "`fnm env`"
