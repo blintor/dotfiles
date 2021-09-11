@@ -33,6 +33,8 @@ set smarttab
 set tabstop=2
 set title
 set wildignore+=*/node_modules/*
+set completeopt=menuone,noinsert
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
 if has("nvim")
   let g:plug_home = stdpath('data') . '/plugged'
