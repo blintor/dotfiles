@@ -11,9 +11,9 @@
 
 autoload -U colors && colors
 
-if ! [ -z $(cat ~/.cache/tmpfolder) ]; then  
-  cd $(cat ~/.cache/tmpfolder)
-fi
+# if ! [ -z $(cat ~/.cache/tmpfolder) ]; then  
+#   cd $(cat ~/.cache/tmpfolder)
+# fi
 
 parse_git_branch() {
 	branch=$(git symbolic-ref --short HEAD 2> /dev/null)
@@ -45,6 +45,9 @@ export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1
 
 # add to path
 export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/go/bin
+export PATH=$PATH:~/.cargo/bin
+export PATH=$PATH:~/.tree-sitter/bin
 export PATH=$PATH:~/.emacs.d/bin
 export PATH=$PATH:~/Code/go/bin/
 export PATH=$PATH:~/.config/composer/vendor/bin
@@ -93,13 +96,16 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 
 # fnm
-export PATH=/home/blntrsz/.fnm:$PATH
-export PATH=/home/blntrsz/.fnm/node-versions/v14.17.5/installation/bin:$PATH
-eval "`fnm env`"
+# export PATH=/home/blntrsz/.fnm:$PATH
+# export PATH=/home/blntrsz/.fnm/node-versions/v14.17.5/installation/bin:$PATH
+# eval "`fnm env`"
 export PATH=$HOME/bin:$PATH
 
 set guifont=DroidSansMono\ Nerd\ Font\ 11
 
 # fnm
-export PATH=/home/blntrsz/.fnm:$PATH
-eval "`fnm env`"
+# export PATH=/home/blntrsz/.fnm:$PATH
+# eval "`fnm env`"
+if [ -e /home/balint/.nix-profile/etc/profile.d/nix.sh ]; then . /home/balint/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+export EDITOR=nvim

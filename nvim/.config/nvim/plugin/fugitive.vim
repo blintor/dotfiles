@@ -1,3 +1,6 @@
+nmap <leader>gs :Git<CR>
+nmap <leader>gc :Git commit<CR>
+
 " Status line
 if !exists('*fugitive#statusline')
   set statusline=%F\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}[L%l/%L,C%03v]
