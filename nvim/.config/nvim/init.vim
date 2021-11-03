@@ -22,7 +22,6 @@ set lazyredraw
 set nobackup
 set nocompatible
 set nosc noru nosm
-set nowrap "No Wrap lines
 set number
 set relativenumber
 set path+=**
@@ -37,6 +36,7 @@ set title
 set wildignore+=*/node_modules/*
 set hidden
 set completeopt=menuone,noinsert
+set mouse=a
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
 if has("nvim")
@@ -77,12 +77,13 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'vim-test/vim-test'
 Plug 'windwp/nvim-autopairs'
-Plug 'sbdchd/neoformat'
+Plug 'prettier/vim-prettier'
 Plug 'puremourning/vimspector'
 Plug 'tpope/vim-dispatch'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'airblade/vim-gitgutter'
 Plug 'akinsho/toggleterm.nvim'
+Plug 'APZelos/blamer.nvim'
 
 call plug#end()
 
@@ -146,3 +147,8 @@ nmap <silent> <leader>cc :cclose<CR>
 tnoremap <silent> <leader><Esc> <C-\><C-n>
 
 nmap <silent> <leader>fa :Grepper<CR>
+
+autocmd BufWritePre *.tsx,*.ts Prettier
+let g:blamer_enabled = 1
+
+nmap <leader>gg :GitGutterPreviewHunk<CR>

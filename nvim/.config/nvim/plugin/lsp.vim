@@ -6,7 +6,7 @@ nmap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
 nmap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nmap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 nmap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
-nmap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+" nmap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nmap <silent> <leader>wa <cmd>lua vim.lsp.buf.add_workspace_folder()<CR>
 nmap <silent> <leader>wr <cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>
 nmap <silent> <leader>wl <cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>
@@ -15,8 +15,8 @@ nmap <silent> <leader>rr <cmd>lua vim.lsp.buf.rename()<CR>
 nmap <silent> <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
 nmap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nmap <silent> <space>e <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
-nmap <silent> <C-j> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-nmap <silent> <S-C-j> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nmap <silent> gk <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nmap <silent> gj <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nmap <silent> <leader>q <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
 " nmap <silent> <leader>f <cmd>lua vim.lsp.buf.formatting()<CR>
 
@@ -115,7 +115,7 @@ local function eslint_config_exists()
 end
 
 local eslint = {
-  lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+  lintCommand = "eslint -f unix --stdin --stdin-filename ${INPUT}",
   lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"},
   lintIgnoreExitCode = true,
