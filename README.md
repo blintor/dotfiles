@@ -1,5 +1,11 @@
 # Dotfiles
 
+## Download
+
+```
+git clone https://github.com/blntrsz/dotfiles.git > ~/.dotfiles/
+```
+
 ## Install
 
 ```
