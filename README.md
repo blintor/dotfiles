@@ -2,14 +2,15 @@
 
 ## Install
 
-1. Clone it:
-
 ```
-git clone https://github.com/blntrsz/dotfiles.git ~/.dotfiles
+sudo sh setup
 ```
 
-2. Stow it
+## Decrypt ssh 
 
 ```
-stow neovim
+ansible-vault decrypt ./ssh/.ssh/id_rsa
+```
+```
+ansible-vault decrypt ./ssh/.ssh/id_rsa.pub
 ```
