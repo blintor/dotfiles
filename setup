@@ -1,12 +1,11 @@
 #! /bin/bash
 
-sudo pacman -S stow 
+sudo pacman -S stow
 
 stow alacritty &
 stow alias &
 stow nvim &
 stow xmobar &
 stow xmonad &
-stow zsh &
-
+stow zsh
 
