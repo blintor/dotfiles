@@ -1,3 +1,1 @@
-nmap <silent> <leader>gj <Plug>(GitGutterNextHunk)
-nmap <silent> <leader>gk <Plug>(GitGutterPrevHunk)
-
+../../../.dotfiles/nvim/.config/nvim/plugin/gitgutter.vim
