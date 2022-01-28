@@ -1,11 +1,8 @@
 #! /bin/bash
 
-sudo pacman -S stow
-
-stow alacritty &
-stow alias &
-stow nvim &
-stow xmobar &
-stow xmonad &
-stow zsh
-
+array=( alacritty alias nvim xmobar xmonad zsh )
+for i in "${array[@]}"
+do
+    stow -D "$folder"
+    stow "$folder"
+done
