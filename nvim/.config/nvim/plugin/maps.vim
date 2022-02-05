@@ -1,0 +1,1 @@
+nnoremap E :Ex<cr>

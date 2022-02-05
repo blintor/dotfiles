@@ -9,11 +9,19 @@
 # Load aliasses
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 
+# autoload colors
 autoload -U colors && colors
 
+# save previous folder and start zsh there
 # if ! [ -z $(cat ~/.cache/tmpfolder) ]; then  
 #   cd $(cat ~/.cache/tmpfolder)
 # fi
+
+# cd print pwd every time
+# function cd {
+#     builtin cd "$@" && pwd > ~/.cache/tmpfolder
+# 		PS1="%{$fg[white]%}-|%{$fg[blue]%}%1d$(parse_git_branch)%{$fg[white]%}|->%{$reset_color%}%b "
+# }
 
 parse_git_branch() {
 	branch=$(git symbolic-ref --short HEAD 2> /dev/null)
@@ -35,9 +43,9 @@ SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
 
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/oroszbalint/.config/zsh/.zshrc'
-autoload -Uz compinit
-compinit
+# zstyle :compinstall filename '/home/oroszbalint/.config/zsh/.zshrc'
+# autoload -Uz compinit
+# compinit
 # End of lines added by compinstall
 
 # better yaourt colors
@@ -78,16 +86,6 @@ bindkey -v '^?' backward-delete-char
 # Change cursor shape
 echo -ne '\e[1 q'
 
-# cd print pwd every time
-function cd {
-    builtin cd "$@" && pwd > ~/.cache/tmpfolder
-		PS1="%{$fg[white]%}-|%{$fg[blue]%}%1d$(parse_git_branch)%{$fg[white]%}|->%{$reset_color%}%b "
-}
-
-function gco {
-	git checkout "$1"	&& cd .
-}
-
 setopt  autocd autopushd
 
 # FZF
@@ -99,13 +97,8 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # export PATH=/home/blntrsz/.fnm:$PATH
 # export PATH=/home/blntrsz/.fnm/node-versions/v14.17.5/installation/bin:$PATH
 # eval "`fnm env`"
-export PATH=$HOME/bin:$PATH
-
-set guifont=DroidSansMono\ Nerd\ Font\ 11
-
-# fnm
-# export PATH=/home/blntrsz/.fnm:$PATH
-# eval "`fnm env`"
-if [ -e /home/balint/.nix-profile/etc/profile.d/nix.sh ]; then . /home/balint/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 export EDITOR=nvim
+
+# C-f will find a folder and start tmux there
+bindkey -s ^f "tmux-sessionizer\n"

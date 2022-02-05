@@ -2,7 +2,9 @@
 
 stow alacritty &
 stow alias &
+stow bin &
 stow nvim &
+stow tmux &
 stow xmobar &
 stow xmonad &
 stow zsh
