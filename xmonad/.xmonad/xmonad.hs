@@ -188,7 +188,7 @@ gapSpacing' i = spacingRaw True (Border i i i i) True (Border i i i i) True
 tall     = renamed [Replace "tall"]
            $ smartBorders
            $ windowNavigation
-           $ addTabs shrinkText myTabTheme
+           $ addTabs shrinkText tabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 12
            $ gapSpacing 2
@@ -197,7 +197,7 @@ tall     = renamed [Replace "tall"]
 magnify  = renamed [Replace "magnify"]
            $ smartBorders
            $ windowNavigation
-           $ addTabs shrinkText myTabTheme
+           $ addTabs shrinkText tabTheme
            $ subLayout [] (smartBorders Simplest)
            $ magnifier
            $ limitWindows 12
@@ -207,7 +207,7 @@ magnify  = renamed [Replace "magnify"]
 monocle  = renamed [Replace "monocle"]
            $ smartBorders
            $ windowNavigation
-           $ addTabs shrinkText myTabTheme
+           $ addTabs shrinkText tabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 20 Full
 
@@ -218,7 +218,7 @@ floats   = renamed [Replace "floats"]
 grid     = renamed [Replace "grid"]
            $ smartBorders
            $ windowNavigation
-           $ addTabs shrinkText myTabTheme
+           $ addTabs shrinkText tabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 12
            $ gapSpacing 8
@@ -228,7 +228,7 @@ grid     = renamed [Replace "grid"]
 spirals  = renamed [Replace "spirals"]
            $ smartBorders
            $ windowNavigation
-           $ addTabs shrinkText myTabTheme
+           $ addTabs shrinkText tabTheme
            $ subLayout [] (smartBorders Simplest)
            $ gapSpacing' 8
            $ spiral (6/7)
@@ -236,7 +236,7 @@ spirals  = renamed [Replace "spirals"]
 threeCol = renamed [Replace "threeCol"]
            $ smartBorders
            $ windowNavigation
-           $ addTabs shrinkText myTabTheme
+           $ addTabs shrinkText tabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 7
            $ ThreeCol 1 (3/100) (1/2)
@@ -244,16 +244,16 @@ threeCol = renamed [Replace "threeCol"]
 threeRow = renamed [Replace "threeRow"]
            $ smartBorders
            $ windowNavigation
-           $ addTabs shrinkText myTabTheme
+           $ addTabs shrinkText tabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 7
            $ Mirror
            $ ThreeCol 1 (3/100) (1/2)
 
 tabs     = renamed [Replace "tabs"]
-           $ tabbed shrinkText myTabTheme
+           $ tabbed shrinkText tabTheme
 
-myTabTheme = def { fontName            = font
+tabTheme = def { fontName            = font
                  , activeColor         = "#46d9ff"
                  , inactiveColor       = "#313846"
                  , activeBorderColor   = "#46d9ff"
@@ -262,10 +262,10 @@ myTabTheme = def { fontName            = font
                  , inactiveTextColor   = "#d0d0d0"
                  }
 
-myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts floats
-               $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
+defaultLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts floats
+               $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) defaultLayout  
              where
-               myDefaultLayout =     withBorder border tall
+               defaultLayout =     withBorder border tall
                                  ||| magnify
                                  ||| noBorders monocle
                                  ||| floats
@@ -277,17 +277,17 @@ myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts float
 workspaceNameWithGaps :: Int -> String
 workspaceNameWithGaps workspaceName = "  " ++ show workspaceName ++ "  "
 
-myWorkspaces :: [String]
-myWorkspaces = map workspaceNameWithGaps  [1, 2, 3, 4, 5]
+workspaceLabels :: [String]
+workspaceLabels = map workspaceNameWithGaps  [1, 2, 3, 4, 5]
 
-myWorkspaceIndices = M.fromList $ zip myWorkspaces [1..]
+workspaceIndices = M.fromList $ zip workspaceLabels [1..]
 
 clickable :: String -> String
 clickable ws = "<action=xdotool key super+" ++ show i ++ ">" ++ ws ++ "</action>"
-    where i = fromJust $ M.lookup ws myWorkspaceIndices
+    where i = fromJust $ M.lookup ws workspaceIndices
 
-myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
-myManageHook = composeAll
+windowRules :: XMonad.Query (Data.Monoid.Endo WindowSet)
+windowRules = composeAll
      [ className =? "confirm"         --> doFloat
      , className =? "file_progress"   --> doFloat
      , className =? "dialog"          --> doFloat
@@ -300,12 +300,12 @@ myManageHook = composeAll
      , className =? "toolbar"         --> doFloat
      , className =? "Yad"             --> doCenterFloat
      , title =? "Oracle VM VirtualBox Manager"  --> doFloat
-     , title =? "Mozilla Firefox"     --> doShift ( myWorkspaces !! 1 )
-     , className =? "brave-browser"   --> doShift ( myWorkspaces !! 1 )
-     , className =? "qutebrowser"     --> doShift ( myWorkspaces !! 1 )
-     , className =? "mpv"             --> doShift ( myWorkspaces !! 7 )
-     , className =? "Gimp"            --> doShift ( myWorkspaces !! 8 )
-     , className =? "VirtualBox Manager" --> doShift  ( myWorkspaces !! 4 )
+     , title =? "Mozilla Firefox"     --> doShift ( workspaceLabels !! 1 )
+     , className =? "brave-browser"   --> doShift ( workspaceLabels !! 1 )
+     , className =? "qutebrowser"     --> doShift ( workspaceLabels !! 1 )
+     , className =? "mpv"             --> doShift ( workspaceLabels !! 7 )
+     , className =? "Gimp"            --> doShift ( workspaceLabels !! 8 )
+     , className =? "VirtualBox Manager" --> doShift  ( workspaceLabels !! 4 )
      , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
      , isFullscreen -->  doFullFloat
      ] <+> namedScratchpadManageHook scratchPads
@@ -334,7 +334,7 @@ mappings =
         , ("M-i", spawn browser)
         , ("M-M1-h", spawn (term ++ " -e htop"))
         , ("M-q", kill1)     -- Kill the currently focused client
-        , ("M-S-q", killAll)   -- Kill all windows on current workspace
+        , ("M-S-a", killAll)   -- Kill all windows on current workspace
         , ("M-.", nextScreen)  -- Switch focus to next monitor
         , ("M-,", prevScreen)  -- Switch focus to prev monitor
         , ("M-S-<KP_Add>", shiftTo Next nonNSP >> moveTo Next nonNSP)       -- Shifts focused window to next ws
@@ -400,9 +400,9 @@ mappings =
         , ("<XF86AudioPlay>", spawn "mocp --play")
         , ("<XF86AudioPrev>", spawn "mocp --previous")
         , ("<XF86AudioNext>", spawn "mocp --next")
-        , ("<XF86AudioMute>", spawn "amixer set Master toggle")
-        , ("<XF86AudioLowerVolume>", spawn "amixer set Master 5%- unmute")
-        , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
+        , ("<XF86AudioMute>", spawn "amixer -D pulse sset Master toggle")
+        , ("<XF86AudioLowerVolume>", spawn "amixer -D pulse sset Master 5%-")
+        , ("<XF86AudioRaiseVolume>", spawn "amixer -D pulse sset Master 5%+")
         , ("<XF86HomePage>", spawn "qutebrowser https://www.youtube.com/c/DistroTube")
         , ("<XF86Search>", spawn "dm-websearch")
         , ("<XF86Mail>", runOrRaise "thunderbird" (resource =? "thunderbird"))
@@ -419,13 +419,13 @@ main = do
     xmproc1 <- spawnPipe "xmobar -x 1 $HOME/.config/xmobar/xmobarrc"
     xmproc2 <- spawnPipe "xmobar -x 2 $HOME/.config/xmobar/xmobarrc"
     xmonad $ ewmh def
-        { manageHook         = myManageHook <+> manageDocks
+        { manageHook         = windowRules <+> manageDocks
         , handleEventHook    = docksEventHook
         , modMask            = modkey
         , terminal           = term
         , startupHook        = initHook
-        , layoutHook         = showWName myLayoutHook
-        , workspaces         = myWorkspaces
+        , layoutHook         = defaultLayoutHook
+        , workspaces         = workspaceLabels
         , borderWidth        = border
         , normalBorderColor  = norColor
         , focusedBorderColor = focusColor

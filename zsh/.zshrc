@@ -61,6 +61,7 @@ export PATH=$PATH:~/Code/go/bin/
 export PATH=$PATH:~/.config/composer/vendor/bin
 export DENO_INSTALL="/home/balint/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+export PATH=$PATH:~/.local/share/nvim/lsp_servers/clojure_lsp/clojure-lsp/clojure_lsp
 
 # remove c-s to stop terminal
 stty -ixon
@@ -94,11 +95,17 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 
 # fnm
-# export PATH=/home/blntrsz/.fnm:$PATH
-# export PATH=/home/blntrsz/.fnm/node-versions/v14.17.5/installation/bin:$PATH
-# eval "`fnm env`"
+export PATH=/home/blntrsz/.fnm:$PATH
+eval "`fnm env`"
 
 export EDITOR=nvim
 
 # C-f will find a folder and start tmux there
 bindkey -s ^f "tmux-sessionizer\n"
+
+export PNPM_HOME="/home/balint/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+# fnm
+export PATH=/home/balint/.fnm:$PATH
+eval "`fnm env`"
