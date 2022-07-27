@@ -62,6 +62,7 @@ export PATH=$PATH:~/.config/composer/vendor/bin
 export DENO_INSTALL="/home/balint/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH=$PATH:~/.local/share/nvim/lsp_servers/clojure_lsp/clojure-lsp/clojure_lsp
+export PATH="$HOME/lua-language-server/bin:$PATH"
 
 # remove c-s to stop terminal
 stty -ixon
@@ -98,7 +99,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export PATH=/home/blntrsz/.fnm:$PATH
 eval "`fnm env`"
 
-export EDITOR=nvim
+export EDITOR="vim"
 
 # C-f will find a folder and start tmux there
 bindkey -s ^f "tmux-sessionizer\n"
@@ -109,3 +110,4 @@ export PATH="$PNPM_HOME:$PATH"
 # fnm
 export PATH=/home/balint/.fnm:$PATH
 eval "`fnm env`"
+alias luamake=/home/balint/lua-language-server/3rd/luamake/luamake
