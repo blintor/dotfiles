@@ -32,7 +32,6 @@ return require('packer').startup(function(use)
   use 'hrsh7th/vim-vsnip'
  	use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
 
-  use 'nvim-treesitter/nvim-treesitter'
   use 'nvim-treesitter/nvim-treesitter-context'
   use 'ThePrimeagen/harpoon'
   use 'TimUntersberger/neogit'
