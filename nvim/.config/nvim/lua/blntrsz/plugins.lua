@@ -12,21 +12,6 @@ end
 local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
-  -- My plugins here
-  -- use 'foo1/bar1.nvim'
-  -- use 'foo2/bar2.nvim'
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
-
-vim.cmd [[packadd packer.nvim]]
-
-return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -51,4 +36,8 @@ return require('packer').startup(function(use)
   use 'nvim-treesitter/nvim-treesitter-context'
   use 'ThePrimeagen/harpoon'
   use 'TimUntersberger/neogit'
+    
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end)
